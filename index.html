@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RevelaGel — Generador de Prompts para Videos ASMR de Esferas de Gel</title>
+<meta name="description" content="RevelaGel: el generador de prompts para videos ASMR de esferas de gel. 15 emociones, 225 mensajes, 180 paletas profesionales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0F14;--surface:#121820;--card:#1A2230;--text:#E4E8EE;--muted:#8A92A2;--subtle:#2A3444;--accent:#0EA5AC;--accent-glow:rgba(14,165,172,.12);--accent-border:rgba(14,165,172,.25);--gold:#D4A843;--gold-soft:rgba(212,168,67,.12);--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}a{color:var(--accent);text-decoration:none}.container{max-width:960px;margin:0 auto;padding:0 24px}section{padding:80px 0}@media(max-width:600px){section{padding:56px 0}}
+.hero{padding:100px 0 80px;text-align:center;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none;z-index:0}.hero *{position:relative;z-index:1}.hero .tag{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-glow);border:1px solid var(--accent-border);border-radius:100px;padding:6px 18px;margin-bottom:24px}.hero h1{font-family:var(--serif);font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.15;margin-bottom:20px;background:linear-gradient(135deg,#fff 30%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero .sub{font-size:1.1rem;color:var(--muted);max-width:620px;margin:0 auto 36px;line-height:1.6}.hero .sub em{color:var(--text);font-style:normal;font-weight:600}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:1.05rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--accent),#088A90);border:none;border-radius:14px;padding:18px 40px;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;box-shadow:0 8px 30px rgba(14,165,172,.25)}.cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(14,165,172,.4)}.cta-btn .arrow{font-size:1.2rem}
+.hero-stats{display:flex;justify-content:center;gap:40px;margin-top:48px;flex-wrap:wrap}.hero-stat{text-align:center}.hero-stat .num{font-family:var(--serif);font-size:2rem;color:var(--gold)}.hero-stat .label{font-size:.78rem;color:var(--muted);margin-top:2px}
+.problema{background:var(--surface)}.problema h2{font-family:var(--serif);font-size:1.8rem;text-align:center;margin-bottom:40px}.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}@media(max-width:520px){.pain-grid{grid-template-columns:1fr}}.pain-card{background:var(--card);border:1px solid var(--subtle);border-radius:16px;padding:28px;text-align:center}.pain-card .icon{font-size:2rem;margin-bottom:12px}.pain-card p{font-size:.92rem;color:var(--muted);line-height:1.55}.pain-card strong{color:var(--text)}
+.solucion h2{font-family:var(--serif);font-size:1.8rem;text-align:center;margin-bottom:16px}.solucion .intro{text-align:center;color:var(--muted);max-width:640px;margin:0 auto 48px;font-size:1rem}.feature-list{display:flex;flex-direction:column;gap:20px;max-width:700px;margin:0 auto}.feature{display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--subtle);border-radius:14px;padding:24px}.feature .dot{flex-shrink:0;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:var(--accent-glow);border:1px solid var(--accent-border)}.feature .feat-text h3{font-size:1rem;font-weight:600;margin-bottom:4px}.feature .feat-text p{font-size:.88rem;color:var(--muted);line-height:1.5}
+.demo{background:var(--surface)}.demo h2{font-family:var(--serif);font-size:1.8rem;text-align:center;margin-bottom:12px}.demo .intro{text-align:center;color:var(--muted);margin-bottom:36px;font-size:.95rem}.demo-box{max-width:620px;margin:0 auto;background:var(--card);border:1px solid var(--subtle);border-radius:18px;padding:28px 24px;text-align:center}.demo-emotions{display:flex;justify-content:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}.demo-emo{background:var(--surface);border:1px solid var(--subtle);border-radius:10px;padding:10px 16px;cursor:pointer;transition:border-color .2s,transform .15s;font-size:.85rem}.demo-emo:hover,.demo-emo.active{border-color:var(--accent);transform:translateY(-2px)}.demo-emo .e{font-size:1.3rem;display:block;margin-bottom:2px}
+.demo-surprise{background:var(--accent-glow);border:1px solid var(--accent-border);color:var(--accent);font-weight:600;font-size:.85rem;border-radius:10px;padding:10px 20px;cursor:pointer;margin-bottom:20px;transition:background .2s}.demo-surprise:hover{background:rgba(14,165,172,.2)}
+.demo-visual{margin:0 auto 20px}
+.demo-msg{font-family:var(--serif);font-size:1.8rem;color:#fff;margin:16px 0 8px;letter-spacing:.04em}
+.demo-combo{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.demo-dots{display:flex;justify-content:center;gap:8px;margin:12px 0}
+.demo-dot{width:28px;height:28px;border-radius:8px;transition:background .3s}
+.demo-scene-card{background:var(--surface);border:1px solid var(--subtle);border-radius:10px;padding:12px 16px;margin:12px auto;max-width:400px;font-size:.82rem;color:var(--muted);line-height:1.4;text-align:left}
+.demo-scene-card strong{color:var(--text);font-size:.85rem}
+.demo-prompt-blur{position:relative;background:var(--bg);border:1px solid var(--subtle);border-radius:10px;padding:14px 16px;margin:16px auto;max-width:440px;height:60px;overflow:hidden}
+.demo-prompt-blur p{font-size:.7rem;color:rgba(138,146,162,.4);line-height:1.4;filter:blur(3px);user-select:none}
+.demo-prompt-blur::after{content:'🔒 Prompt completo en el kit';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;color:var(--accent);background:rgba(26,34,48,.6);border-radius:10px}
+.demo-unlock{display:block;margin:16px auto 12px;background:linear-gradient(135deg,var(--accent),#088A90);color:#fff;font-weight:700;font-size:.85rem;border:none;border-radius:10px;padding:12px 24px;cursor:pointer;text-decoration:none;text-align:center;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(14,165,172,.2);max-width:360px}.demo-unlock:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(14,165,172,.35);color:#fff}
+.demo-cta{font-size:.8rem;color:var(--muted);margin-top:4px}
+
+/* VIDEO */
+.video-section{background:var(--bg)}.video-section h2{font-family:var(--serif);font-size:1.8rem;text-align:center;margin-bottom:12px}
+.video-section .intro{text-align:center;color:var(--muted);margin-bottom:36px;font-size:.95rem}
+.video-grid{display:flex;justify-content:center;gap:24px;max-width:700px;margin:0 auto;flex-wrap:wrap}
+.video-card{background:var(--card);border:1px solid var(--subtle);border-radius:14px;overflow:hidden;width:320px}
+.video-card .tiktok-embed{margin:0 !important;max-width:100% !important;min-width:0 !important}
+.video-label{padding:12px 16px;font-size:.82rem;color:var(--muted);text-align:center}
+.packs h2{font-family:var(--serif);font-size:1.8rem;text-align:center;margin-bottom:40px}.pack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}.pack-chip{background:var(--card);border:1px solid var(--subtle);border-radius:12px;padding:16px;text-align:center;transition:border-color .2s,transform .2s}.pack-chip:hover{border-color:var(--accent);transform:translateY(-3px)}.pack-chip .emo{font-size:1.6rem;margin-bottom:6px}.pack-chip .name{font-size:.85rem;font-weight:600}.pack-chip .count{font-size:.72rem;color:var(--muted);margin-top:4px}
+.anchor{background:var(--surface)}.anchor h2{font-family:var(--serif);font-size:1.8rem;text-align:center;margin-bottom:40px}.anchor-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;max-width:700px;margin:0 auto;align-items:center}@media(max-width:640px){.anchor-grid{grid-template-columns:1fr;text-align:center}}.anchor-card{background:var(--card);border:1px solid var(--subtle);border-radius:16px;padding:28px;text-align:center}.anchor-card h3{font-size:.95rem;color:var(--muted);margin-bottom:12px;font-weight:500}.anchor-card .amount{font-family:var(--serif);font-size:2rem;margin-bottom:8px}.anchor-card .detail{font-size:.78rem;color:var(--muted);line-height:1.5}.anchor-card.old .amount{color:#6A7080;text-decoration:line-through}.anchor-card.new{border-color:var(--accent);box-shadow:0 0 30px var(--accent-glow)}.anchor-card.new .amount{color:var(--gold)}.anchor-vs{font-family:var(--serif);font-size:1.5rem;color:var(--subtle)}@media(max-width:640px){.anchor-vs{display:none}}
+.incluye h2{font-family:var(--serif);font-size:1.8rem;text-align:center;margin-bottom:40px}.offer-card{background:var(--surface);border:1px solid var(--subtle);border-radius:18px;padding:32px;position:relative;max-width:480px;margin:0 auto}.offer-card.featured{border-color:var(--accent);box-shadow:0 0 40px var(--accent-glow)}.offer-card .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 16px;border-radius:100px}.offer-card h3{font-family:var(--serif);font-size:1.3rem;margin-bottom:6px;margin-top:8px}.offer-card .price{font-family:var(--serif);font-size:2.2rem;color:var(--gold);margin:12px 0 20px}.offer-card .price span{font-size:.9rem;color:var(--muted);font-family:var(--sans)}.offer-card ul{list-style:none;margin-bottom:24px}.offer-card li{font-size:.88rem;color:var(--muted);padding:6px 0;padding-left:24px;position:relative}.offer-card li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}.offer-card li.bonus{color:var(--gold)}.offer-card li.bonus::before{content:'★';color:var(--gold)}
+.garantia{background:var(--surface)}.garantia-box{max-width:600px;margin:0 auto;text-align:center;background:var(--card);border:1px solid var(--subtle);border-radius:20px;padding:48px 40px}.garantia-box .shield{font-size:3rem;margin-bottom:16px}.garantia-box h2{font-family:var(--serif);font-size:1.5rem;margin-bottom:12px}.garantia-box p{color:var(--muted);font-size:.95rem;line-height:1.6}
+.faq h2{font-family:var(--serif);font-size:1.8rem;text-align:center;margin-bottom:40px}.faq-list{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:12px}.faq-item{background:var(--surface);border:1px solid var(--subtle);border-radius:14px;overflow:hidden}.faq-q{padding:20px 24px;font-weight:600;font-size:.95rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}.faq-q::after{content:'+';font-size:1.3rem;color:var(--muted);transition:transform .2s}.faq-item.open .faq-q::after{transform:rotate(45deg);color:var(--accent)}.faq-a{padding:0 24px 20px;font-size:.88rem;color:var(--muted);line-height:1.6;display:none}.faq-item.open .faq-a{display:block}
+.cta-final{text-align:center;padding:80px 0 100px;position:relative}.cta-final::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}.cta-final *{position:relative;z-index:1}.cta-final h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:16px}.cta-final p{color:var(--muted);margin-bottom:32px;font-size:1rem}
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--subtle);font-size:.78rem;color:var(--muted)}footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<section class="hero"><div class="container">
+  <div class="tag">RevelaGel · por Lumina Reveals</div>
+  <h1>RevelaGel: Crea Videos ASMR Virales de Revelación de Mensajes</h1>
+  <p class="sub">El generador profesional que elige por ti la <em>paleta de colores perfecta</em>, el <em>escenario con su luz</em> y el <em>mensaje que emociona</em>. Solo haz clic y copia el prompt.</p>
+  <a onclick="return false;" href="https://pay.hotmart.com/K106657732H?checkoutMode=2" class="hotmart-fb cta-btn">QUIERO MI GENERADOR <span class="arrow">→</span></a>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">15</div><div class="label">Emociones</div></div>
+    <div class="hero-stat"><div class="num">225</div><div class="label">Mensajes</div></div>
+    <div class="hero-stat"><div class="num">180</div><div class="label">Paletas</div></div>
+    <div class="hero-stat"><div class="num" id="comboCounter">0</div><div class="label">Combinaciones</div></div>
+  </div>
+</div></section>
+
+<section class="problema"><div class="container">
+  <h2>¿Te pasa esto cuando intentas crear videos ASMR?</h2>
+  <div class="pain-grid">
+    <div class="pain-card"><div class="icon">🎨</div><p><strong>Pierdes horas eligiendo colores</strong> que al final no combinan entre sí ni con el mensaje</p></div>
+    <div class="pain-card"><div class="icon">⚠️</div><p><strong>Escribes prompts que la IA no entiende</strong> y el resultado no se parece a lo que imaginaste</p></div>
+    <div class="pain-card"><div class="icon">📱</div><p><strong>Tu feed se ve inconsistente</strong> porque cada video tiene un estilo diferente</p></div>
+    <div class="pain-card"><div class="icon">⏰</div><p><strong>Te quedas sin ideas</strong> y repites los mismos mensajes genéricos que no conectan</p></div>
+  </div>
+</div></section>
+
+<section class="solucion"><div class="container">
+  <h2>Tu equipo de dirección de arte en un solo archivo</h2>
+  <p class="intro">RevelaGel es una herramienta interactiva diseñada por especialistas en colorimetría. Hace el trabajo creativo por ti.</p>
+  <div class="feature-list">
+    <div class="feature"><div class="dot">💎</div><div class="feat-text"><h3>Elige la emoción, todo lo demás se arma solo</h3><p>Selecciona "Amor", "Perdón", "Navidad" o cualquiera de las 15 emociones y el generador carga automáticamente mensajes, paletas, escenarios e iluminación coherentes.</p></div></div>
+    <div class="feature"><div class="dot">🎨</div><div class="feat-text"><h3>180 paletas diseñadas por especialistas</h3><p>Cada paleta define la tinta del gel, el color del glitter, las uñas, la jeringa y el charco final. Armonías análogas para intimidad, croma bajo para el perdón, saturación plena para la energía.</p></div></div>
+    <div class="feature"><div class="dot">🔦</div><div class="feat-text"><h3>150 escenarios con iluminación real</h3><p>Dormitorio con lucecitas a 2700K, claustro con arcos, heladería retro, feria con luces. Materiales, texturas y temperatura de color en Kelvin.</p></div></div>
+    <div class="feature"><div class="dot">✨</div><div class="feat-text"><h3>Sorpréndeme: un video nuevo en 1 clic</h3><p>¿Sin inspiración? Un clic y el generador elige una combinación perfecta de mensaje, paleta, escenario y contenedor dentro de la emoción seleccionada.</p></div></div>
+    <div class="feature"><div class="dot">📋</div><div class="feat-text"><h3>Prompt listo para copiar y pegar</h3><p>Redactado en inglés profesional, optimizado para Veo 3. Cópialo, pégalo y genera. También exporta en JSON.</p></div></div>
+    <div class="feature"><div class="dot">🔒</div><div class="feat-text"><h3>Tuyo para siempre, funciona offline</h3><p>Un solo archivo HTML que funciona en cualquier navegador sin internet. Sin suscripción, sin cuenta, sin límites.</p></div></div>
+  </div>
+</div></section>
+
+<section class="demo"><div class="container">
+  <h2>Pruébalo ahora mismo</h2>
+  <p class="intro">Elige una emoción, haz clic en Sorpréndeme y mira cómo el sistema arma todo por ti.</p>
+  <div class="demo-box">
+    <div class="demo-emotions">
+      <div class="demo-emo active" onclick="dS(this,0)"><span class="e">❤️</span>Amor</div>
+      <div class="demo-emo" onclick="dS(this,1)"><span class="e">✝️</span>Fe</div>
+      <div class="demo-emo" onclick="dS(this,2)"><span class="e">🔥</span>Ánimo</div>
+      <div class="demo-emo" onclick="dS(this,3)"><span class="e">🎄</span>Navidad</div>
+      <div class="demo-emo" onclick="dS(this,4)"><span class="e">👶</span>Bebé</div>
+    </div>
+    <button class="demo-surprise" onclick="dR()">✨ Sorpréndeme</button>
+    <div class="demo-visual">
+      <div class="demo-dots" id="dDots">
+        <div class="demo-dot" style="background:#D42248"></div>
+        <div class="demo-dot" style="background:#FF7A3C"></div>
+        <div class="demo-dot" style="background:#C4157F"></div>
+        <div class="demo-dot" style="background:#FBD0E6"></div>
+      </div>
+      <div class="demo-msg" id="dMsg">TE AMO</div>
+      <div class="demo-combo" id="dCombo">Paleta: Rojo pasión · Escena: Velas rojas</div>
+      <div class="demo-scene-card" id="dScene">
+        <strong>🔦 Velas rojas</strong><br>Mesa de nogal cálida, velas rojas difuminadas en bokeh ámbar, luz cálida de vela a 2800K con catchlight suave
+      </div>
+    </div>
+    <div class="demo-prompt-blur">
+      <p>Hyperrealistic macro ASMR video vertical 9:16 locked-off shot 8 seconds emotional mood passionate warm deeply romantic cozy candlelit setting warm walnut bedside table blurred cluster of red pillar candles and rose petals in rich amber bokeh</p>
+    </div>
+    <a onclick="return false;" href="https://pay.hotmart.com/K106657732H?checkoutMode=2" class="hotmart-fb demo-unlock">🔓 Desbloquea el prompt completo + 270,000 combinaciones →</a>
+    <p class="demo-cta">El kit genera prompts detallados con colores hex, Kelvin, negative prompt y más.</p>
+  </div>
+</div></section>
+
+<!-- VIDEO DE EJEMPLO -->
+<section class="video-section"><div class="container">
+  <h2>Mira el resultado</h2>
+  <p class="intro">Videos generados con prompts del sistema. Cada uno creado en menos de 5 minutos.</p>
+  <div class="video-grid">
+    <div class="video-card">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lumina.reveals/video/7659905781617167647" data-video-id="7659905781617167647" style="max-width:100%;min-width:280px"><section><a target="_blank" title="@lumina.reveals" href="https://www.tiktok.com/@lumina.reveals?refer=embed">@lumina.reveals</a></section></blockquote>
+      <div class="video-label">❤️ Pack Amor · "TE AMO"</div>
+    </div>
+    <div class="video-card">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lumina.reveals/video/7659448369131113758" data-video-id="7659448369131113758" style="max-width:100%;min-width:280px"><section><a target="_blank" title="@lumina.reveals" href="https://www.tiktok.com/@lumina.reveals?refer=embed">@lumina.reveals</a></section></blockquote>
+      <div class="video-label">☀️ Pack Buenos días · "FELIZ SEMANA"</div>
+    </div>
+  </div>
+  <script async src="https://www.tiktok.com/embed.js"></script>
+</div></section>
+
+<section class="packs"><div class="container">
+  <h2>15 emociones, cada una con su mundo propio</h2>
+  <div class="pack-grid">
+    <div class="pack-chip"><div class="emo">❤️</div><div class="name">Amor</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">🕊️</div><div class="name">Perdón</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">🌙</div><div class="name">Te extraño</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">🌻</div><div class="name">Gratitud</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">🔥</div><div class="name">Ánimo</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">🤍</div><div class="name">Consuelo</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">✝️</div><div class="name">Fe</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">🎉</div><div class="name">Celebración</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">🫶</div><div class="name">Amistad</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">👶</div><div class="name">Bebé</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">🎄</div><div class="name">Navidad</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">🕯️</div><div class="name">En memoria</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">💍</div><div class="name">Boda</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">☀️</div><div class="name">Buenos días</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+    <div class="pack-chip"><div class="emo">💘</div><div class="name">Me gustas</div><div class="count">15 msgs · 12 paletas · 10 escenas</div></div>
+  </div>
+</div></section>
+
+<section class="anchor"><div class="container">
+  <h2>Lo que realmente vale este sistema</h2>
+  <div class="anchor-grid">
+    <div class="anchor-card old"><h3>Contratar por separado</h3><div class="amount">$200+</div><div class="detail">Colorista + prompter + director de arte para UN solo video. Y al siguiente empiezas de cero.</div></div>
+    <div class="anchor-vs">vs</div>
+    <div class="anchor-card new"><h3>Generador Lumina Reveals</h3><div class="amount">$27</div><div class="detail">270,000+ combinaciones profesionales.<br>Pago único. Ilimitado. Para siempre.</div></div>
+  </div>
+</div></section>
+
+<section class="incluye"><div class="container">
+  <h2>Todo lo que recibes hoy</h2>
+  <div class="offer-card featured">
+    <div class="badge">Kit completo</div>
+    <h3>RevelaGel</h3>
+    <div class="price">$27 <span>USD · pago único</span></div>
+    <ul>
+      <li>Generador interactivo completo (15 packs emocionales)</li>
+      <li>225 mensajes listos para revelar</li>
+      <li>180 paletas de color profesionales</li>
+      <li>150 escenarios con iluminación real</li>
+      <li>10 formas de contenedor</li>
+      <li>Prompt + JSON con un clic</li>
+      <li>270,000+ combinaciones coherentes</li>
+      <li>Infinitas con mensajes personalizados</li>
+      <li>Funciona offline, tuyo para siempre</li>
+      <li>Guía rápida "Tu primer video en 10 min"</li>
+      <li class="bonus">BONUS: Checklist de publicación por plataforma</li>
+      <li class="bonus">BONUS: Pack de 30 hooks virales para caption</li>
+    </ul>
+    <a onclick="return false;" href="https://pay.hotmart.com/K106657732H?checkoutMode=2" class="hotmart-fb cta-btn" style="width:100%;justify-content:center">QUIERO MI GENERADOR →</a>
+  </div>
+</div></section>
+
+<section class="garantia"><div class="container">
+  <div class="garantia-box"><div class="shield">🛡️</div><h2>7 días de garantía total</h2><p>Si el generador no es lo que esperabas, te devolvemos el 100% de tu dinero. Sin preguntas, sin complicaciones. Todo el riesgo es nuestro.</p></div>
+</div></section>
+
+<section class="faq"><div class="container">
+  <h2>Preguntas frecuentes</h2>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Necesito saber editar video?</div><div class="faq-a">No. El generador crea el prompt completo que pegas directamente en Veo 3 u otro generador de video con IA. El video se genera solo.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Funciona en celular?</div><div class="faq-a">Sí. Es un archivo HTML responsive que funciona en cualquier navegador, incluso sin internet.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Es un pago único o suscripción?</div><div class="faq-a">Pago único. Compras una vez y es tuyo para siempre. Sin mensualidades, sin límites de uso.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué es Veo 3?</div><div class="faq-a">Veo 3 es el generador de video con IA de Google, accesible desde Google AI Studio. El generador crea prompts optimizados para esta herramienta, pero también funcionan en otros generadores de video.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Puedo personalizar los mensajes?</div><div class="faq-a">Sí. Además de los 225 mensajes incluidos, puedes escribir cualquier mensaje personalizado. Funciona con todas las paletas y escenarios, haciendo las combinaciones literalmente infinitas.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Puedo usar los videos para mi negocio?</div><div class="faq-a">Absolutamente. Los videos que generes son tuyos para usar en redes sociales, publicidad, contenido de marca o lo que necesites.</div></div>
+  </div>
+</div></section>
+
+<section class="cta-final"><div class="container">
+  <h2>Empieza a crear videos ASMR que nadie puede dejar de ver</h2>
+  <p>270,000+ combinaciones coherentes diseñadas por especialistas — y con mensajes personalizados, las combinaciones son infinitas. Tu primer video viral está a un clic.</p>
+  <a onclick="return false;" href="https://pay.hotmart.com/K106657732H?checkoutMode=2" class="hotmart-fb cta-btn">QUIERO MI GENERADOR — $27 <span class="arrow">→</span></a>
+</div></section>
+
+<footer>
+  <p>© 2026 RevelaGel by Lumina Reveals. Todos los derechos reservados.</p>
+  <p style="margin-top:8px"><a href="https://www.facebook.com/LuminaReveals" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="#1877F2" style="vertical-align:middle;margin-right:4px"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.025 4.388 11.019 10.125 11.927v-8.437H7.078v-3.49h3.047V9.41c0-3.026 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.971h-1.513c-1.49 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796v8.437C19.612 23.092 24 18.098 24 12.073"/></svg>Lumina Reveals</a></p>
+  <p style="margin-top:12px;font-size:.7rem">Vendido y entregado a través de Hotmart. Precio en USD. Al comprar serás redirigido al checkout seguro.</p>
+</footer>
+
+<script>
+// Hotmart Checkout Widget
+function importHotmart(){
+  var imported = document.createElement('script');
+  imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
+  document.head.appendChild(imported);
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
+  document.head.appendChild(link);
+}
+importHotmart();
+</script>
+
+<script>
+// Counter
+function animC(el,t,d){const s=performance.now();const f=n=>n>=1000?(n/1000).toFixed(0)+'K+':n.toLocaleString('es');(function k(now){const p=Math.min((now-s)/d,1);el.textContent=f(Math.round(t*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(k);})(s);}
+const cO=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){animC(x.target,270000,2500);cO.unobserve(x.target);}});},{threshold:.5});
+cO.observe(document.getElementById('comboCounter'));
+// Demo
+const DD=[
+  {e:'Amor',p:[{n:'Rojo pasión',c:['#D42248','#FF7A3C','#C4157F','#FBD0E6']},{n:'Vino y terciopelo',c:['#8F2A4C','#B87A96','#6E1838','#C9A34A']},{n:'Blush nupcial',c:['#E4B8B4','#F7EFE6','#C99184','#F2DCD6']},{n:'Chocolate y fresa',c:['#9A5640','#E8748E','#6E3A28','#F2E0D0']}],
+   s:[{n:'Velas rojas',d:'Mesa de nogal cálida, velas rojas difuminadas en bokeh ámbar, luz de vela a 2800K'},{n:'Dormitorio lucecitas',d:'Cabecera de terciopelo con fairy lights en bokeh dorado, 2700K tungsteno'},{n:'Bañera pétalos',d:'Borde de mármol blanco, pétalos en agua humeante, brillo dorado de velas'},{n:'Cine en casa',d:'Manta de punto, fuerte de almohadas y proyector cálido en bokeh ámbar'}],
+   m:['TE AMO','MI VIDA','ERES MI TODO','SIEMPRE TU','ME HACES FELIZ','CONTIGO SIEMPRE']},
+  {e:'Fe',p:[{n:'Mariano',c:['#7AA6E0','#A8CCF0','#FBF8F0','#E4F0FB']},{n:'Adviento',c:['#8A5CB8','#E88FB4','#D9A441','#D9C8EC']},{n:'Vitral al sol',c:['#3A6EC8','#C8342E','#D9A441','#C8D4F0']},{n:'Olivo santo',c:['#9EAE7E','#D8CCAE','#6E8050','#E8ECE0']}],
+   s:[{n:'Capilla vitrales',d:'Banca de roble, luz multicolor filtrada por vitrales, bokeh sagrado'},{n:'Biblia abierta',d:'Mesa de nogal, Biblia con marcador y vela encendida, 2800K dorado reverente'},{n:'Claustro arcos',d:'Piedra pálida antigua, arcos rítmicos y jardín iluminado, calma atemporal'},{n:'Velas novena',d:'Mesa oscura pulida, filas de veladoras en bokeh ámbar profundo'}],
+   m:['DIOS TE AMA','DIOS ES FIEL','CONFIA EN EL','EL TE SOSTIENE','MARIA TE CUIDA','FE Y ADELANTE']},
+  {e:'Ánimo',p:[{n:'Turquesa eléctrico',c:['#17B8A6','#F2724E','#0E8A7A','#BFEDE6']},{n:'Rojo victoria',c:['#E23840','#F0722E','#C41820','#F2C048']},{n:'Azul poder',c:['#2E6EE0','#2EC4D9','#1E4EB0','#DCE8FB']},{n:'Neón menta',c:['#20F0B0','#1A1A2A','#00C888','#C8FAE8']}],
+   s:[{n:'Estadio vacío',d:'Asiento blanco de estadio, reflectores y campo verde difuminado, luz dramática'},{n:'Gimnasio luminoso',d:'Banco blanco de gym, discos de colores y ventanales industriales, 5600K'},{n:'Cima amanecer',d:'Granito pálido en la cima, mar de nubes doradas abajo, luz triunfal'},{n:'Campo abierto',d:'Mesa blanca en pasto alto, niebla dorada quemándose con el sol'}],
+   m:['TU PUEDES','NO TE RINDAS','CREE EN TI','ERES CAPAZ','NACISTE PARA ESTO','HOY SE PUEDE']},
+  {e:'Navidad',p:[{n:'Navidad clásica',c:['#D93A3A','#1E7A3C','#D9A441','#F2C8C8']},{n:'Nochebuena',c:['#8F2438','#1E5A34','#C9A34A','#E8C8CE']},{n:'Estrella Belén',c:['#2A3462','#F5C518','#4A5490','#C8D0E8']},{n:'Candy cane',c:['#E4494F','#FDF4F4','#C42B31','#F8D8DA']}],
+   s:[{n:'Árbol navideño',d:'Mármol blanco, árbol decorado con luces doradas cálidas, bokeh festivo'},{n:'Chimenea',d:'Mesa de mármol junto a chimenea crepitante, medias colgadas, 2800K'},{n:'Cabaña nevada',d:'Mesa de pino claro, ventana con nieve cayendo y pinos, mezcla fría-cálida'},{n:'Pesebre',d:'Madera antigua, figuras del nacimiento bajo una estrella cálida, bokeh reverente'}],
+   m:['FELIZ NAVIDAD','PAZ Y AMOR','NOCHE DE PAZ','JESUS NACIO','DULCE NAVIDAD','FELICES FIESTAS']},
+  {e:'Bebé',p:[{n:'Baby rosa',c:['#F5BCD0','#FBE8EE','#E794B2','#F8DCE8']},{n:'Baby azul',c:['#A8CCF0','#E4F0FB','#7AAADE','#D6E8F8']},{n:'Rosa y azul',c:['#F55FAB','#3E8FF0','#C3A8ED','#F0D8F0']},{n:'Teaser dorado',c:['#D9B45C','#C3A8ED','#F2DE8C','#F5EBC8']}],
+   s:[{n:'Cuarto bebé',d:'Cómoda blanca, cuna con peluches pastel y móvil de nubes, luz suave'},{n:'Baby shower',d:'Mesa de fiesta blanca, globos pastel y pastel de bienvenida, high-key'},{n:'Gender reveal',d:'Mesa blanca con globos rosa Y azul, confeti, luz festiva brillante'},{n:'Manta tejida',d:'Punto grueso color crema, botitas y sonajero de madera, luz cálida suave'}],
+   m:['ES NINO','ES NINA','OH BABY','DULCE ESPERA','YA VIENE','HOLA MUNDO']}
+];
+let dI=0;const pk=a=>a[Math.floor(Math.random()*a.length)];
+function dS(el,i){document.querySelectorAll('.demo-emo').forEach(e=>e.classList.remove('active'));el.classList.add('active');dI=i;dR();}
+function dR(){
+  const d=DD[dI],p=pk(d.p),s=pk(d.s),m=pk(d.m);
+  const dots=document.getElementById('dDots');
+  dots.innerHTML=p.c.map(c=>`<div class="demo-dot" style="background:${c}"></div>`).join('');
+  document.getElementById('dMsg').textContent=m;
+  document.getElementById('dCombo').textContent=`Paleta: ${p.n} · Escena: ${s.n}`;
+  document.getElementById('dScene').innerHTML=`<strong>🔦 ${s.n}</strong><br>${s.d}`;
+}
+dR();
+</script>
+</body>
+</html>
